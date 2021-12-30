@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
 const helmet = require("helmet");
+
+//Gestion des tables par sequelize
 const sequelizeDb = require('./database/sequelize');
 const user = require('./models/user-model');
 const post = require('./models/post-model');
+const comment = require('./models/comment-model');
 
 require('dotenv').config()
 

@@ -7,7 +7,7 @@ const sequelizeDb = new sequelize('groupomania', 'root', 'pass20122014', {
 
 try {
   sequelizeDb.authenticate();
-  console.log('Connection has been established successfully.');
+  console.log('Connection ha7s been established successfully.');
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }

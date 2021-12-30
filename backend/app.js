@@ -1,7 +1,9 @@
 const express = require('express');
-const sequelize= require('sequelize');
 const path = require('path');
 const helmet = require("helmet");
+const sequelizeDb = require('./database/sequelize');
+const user = require('./models/user-model');
+const post = require('./models/post-model');
 
 require('dotenv').config()
 

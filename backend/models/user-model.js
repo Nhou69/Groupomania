@@ -1,6 +1,8 @@
 const { sequelize, DataTypes } = require('sequelize');
 const sequelizeDb = require('../database/sequelize');
 
+const {isEmail} = require('validator')
+
 const post = require('./post-model');
 const comment = require('./comment-model');
 
@@ -22,6 +24,7 @@ const user = sequelizeDb.define('user', {
     },
     email: {
         type: DataTypes.STRING,
+        validate: isEmail,
         unique: true,
         allowNull: false
     },

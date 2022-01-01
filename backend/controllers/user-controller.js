@@ -47,13 +47,6 @@ exports.loginUser = (req, res, next) => {
         .catch(error => res.status(500).json({error}));
 };
 
-//suppression de l'utilisateur
-exports.deleteUser = (req, res, next) => {
-    user.destroy({ where: { id: req.params.id }})
-        .then(() => res.status(200).json({ message: 'Utilisateur supprimé !'}))
-        .catch(error => res.status(400).json({ error }))
-};
-
 //Présente un seul utilisateur
 exports.getOneUser = (req, res, next) => {
     user.findOne({ where: { id: req.params.id } })
@@ -76,4 +69,11 @@ exports.modifyUser = (req, res, next) => {
     user.update(userObject, { where: { id: req.params.id }})
         .then(()=> res.status(200).json({message : 'Utilisateur modifié !'}))
         .catch((error)=> res.status(400).json({error}));
+};
+
+//suppression de l'utilisateur
+exports.deleteUser = (req, res, next) => {
+    user.destroy({ where: { id: req.params.id }})
+        .then(() => res.status(200).json({ message: 'Utilisateur supprimé !'}))
+        .catch(error => res.status(400).json({ error }))
 };

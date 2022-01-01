@@ -18,11 +18,6 @@ const post = sequelizeDb.define('post', {
     image: {
         type: DataTypes.STRING,
     },
-    date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-        allowNull: false
-    },
     content: {
         type: DataTypes.TEXT,
         allowNull: false

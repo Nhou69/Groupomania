@@ -6,14 +6,14 @@ const jwt = require('jsonwebtoken');
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
-            user.create({
+            const User = new user({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 email: req.body.email,
-                image: null,
                 password: hash,
-                isAdmin: false
-            })
+                //isAdmin: false
+            });
+            User.save()
                 .then(() => res.status(201).json({message: 'Utilisateur crée !'}))
                 .catch(error => res.status(400).json({error}));
         })

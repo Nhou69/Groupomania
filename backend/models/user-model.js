@@ -1,14 +1,14 @@
 const { sequelize, DataTypes } = require('sequelize');
 const sequelizeDb = require('../database/sequelize');
 
-const {isEmail} = require('validator')
+//const {isEmail} = require('validator')
 
 const post = require('./post-model');
 const comment = require('./comment-model');
 
 //Création de la table users
 const user = sequelizeDb.define('user', {
-    id : {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
@@ -24,7 +24,6 @@ const user = sequelizeDb.define('user', {
     },
     email: {
         type: DataTypes.STRING,
-        validate: isEmail,
         unique: true,
         allowNull: false
     },

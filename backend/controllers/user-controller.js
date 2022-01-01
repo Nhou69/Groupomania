@@ -53,9 +53,16 @@ exports.deleteUser = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
 };
 
-//modifier un utilisateur
+//Présente un seul utilisateur
 exports.getOneUser = (req, res, next) => {
     user.findOne({ where: { id: req.params.id } })
         .then(user => res.status(200).json(user))
+        .catch(error => res.status(400).json({error}));
+};
+
+//Présente tous les utilisateurs
+exports.getAllUser = (req, res, next) => {
+    user.findAll()
+        .then(users => res.status(200).json(users))
         .catch(error => res.status(400).json({error}));
 };

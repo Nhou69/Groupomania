@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // Créer un compte utilisateur
-exports.signup = (req, res, next) => {
+exports.signupUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const User = new user({
@@ -21,7 +21,7 @@ exports.signup = (req, res, next) => {
 };
 
 // Se connecter à un compte utilisateur
-exports.login = (req, res, next) => {
+exports.loginUser = (req, res, next) => {
     user.findOne({ email: req.body.email })
         .then(user =>{
             if(!user){
@@ -44,4 +44,11 @@ exports.login = (req, res, next) => {
             .catch(error => res.status(500).json({error}));
         })
         .catch(error => res.status(500).json({error}));
+};
+
+//suppression de l'utilisateur
+exports.deleteUser = (req, res, next) => {
+    user.destroy({ where: { id: req.params.id }})
+        .then(() => res.status(200).json({ message: 'Utilisateur supprimé !'}))
+        .catch(error => res.status(400).json({ error }))
 };

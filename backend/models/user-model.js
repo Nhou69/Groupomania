@@ -35,7 +35,7 @@ const user = sequelizeDb.define('user', {
         type: DataTypes.STRING,
     },
     isAdmin: {
-      type: DataTypes.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
     }
 });
@@ -55,6 +55,5 @@ user.hasMany(comment, {
     onUpdate: 'CASCADE'
 });
 comment.belongsTo(user, { foreignKey: 'user_id' });//un post est conçu par un seul utilisateur
-
 
 module.exports = user;

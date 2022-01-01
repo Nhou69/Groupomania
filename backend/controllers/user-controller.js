@@ -1,6 +1,7 @@
 const user = require('../models/user-model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 // Créer un compte utilisateur
 exports.signupUser = (req, res, next) => {
@@ -65,4 +66,14 @@ exports.getAllUser = (req, res, next) => {
     user.findAll()
         .then(users => res.status(200).json(users))
         .catch(error => res.status(400).json({error}));
+};
+
+//modification d'un utilisateur
+exports.modifyUser = (req, res, next) => {
+    const userObject = {
+        ...req.body
+    };
+    user.update(userObject, { where: { id: req.params.id }})
+        .then(()=> res.status(200).json({message : 'Utilisateur modifié !'}))
+        .catch((error)=> res.status(400).json({error}));
 };

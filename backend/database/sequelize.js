@@ -3,7 +3,8 @@ const sequelize = require('sequelize');
 //Connexion à la base de données mysql local
 const sequelizeDb = new sequelize('groupomania', 'root', 'pass20122014', {
   dialect: 'mysql',
-  host: 'localhost'
+  host: 'localhost',
+  timezone: 'Europe/Paris'
 });
 
 //test de connexion à la base

@@ -13,6 +13,7 @@ const comment = require('./models/comment-model');
 //Gestion des routes
 const userRoutes = require('./routes/user-route');
 const postRoutes = require('./routes/post-route');
+const commentRoutes = require('./routes/comment-route');
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 
 module.exports = app;

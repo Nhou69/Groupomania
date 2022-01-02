@@ -37,3 +37,10 @@ exports.modifyPost = (req, res, next) => {
         .then(()=> res.status(200).json({message : 'Post modifié !'}))
         .catch((error)=> res.status(400).json({error}));
 };
+
+//suppression d'un post
+exports.deletePost = (req, res, next) => {
+    post.destroy({ where: { id: req.params.id }})
+        .then(() => res.status(200).json({ message: 'Post supprimé !'}))
+        .catch(error => res.status(400).json({ error }))
+};

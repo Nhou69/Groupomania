@@ -23,7 +23,7 @@ exports.signupUser = (req, res, next) => {
 
 // Se connecter à un compte utilisateur
 exports.loginUser = (req, res, next) => {
-    user.findOne({ email: req.body.email })
+    user.findOne({where: {email: req.body.email}})
         .then(user =>{
             if(!user){
                 return res.status(401).json({message: 'Utilisateur non trouvé !'});
@@ -34,11 +34,15 @@ exports.loginUser = (req, res, next) => {
                     return res.status(401).json({message: 'Mot de passe incorrect !'});
                 }
                 res.status(200).json({
-                    userId: user._id,
-                    token: jwt.sign(
-                        {userId: user._id},
-                        process.env.TOKEN,
-                        {expiresIn: '24h'}
+                    token: jwt.sign({
+                        userId: user.id,
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        email: user.email,
+                        isAdmin: user.isAdmin
+                    },
+                    process.env.TOKEN,
+                    {expiresIn: '24h'}
                     )
                 });
             })

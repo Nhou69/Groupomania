@@ -7,7 +7,7 @@ import Home from '../../pages/Home';
 const navRoutes = () => {
     return (
         <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/profil" element={<Profil />} />
             <Route path="/home" element={<Home />} />
         </Routes>

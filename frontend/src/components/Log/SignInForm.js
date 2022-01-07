@@ -7,8 +7,7 @@ const SignInForm = () => {
     
     const handleLogin = (e) => {
         e.preventDefault();
-        const emailError = document.querySelector('.email.error');
-        const passwordError = document.querySelector('.password.error')
+        const msgError = document.querySelector('.error');
 
         axios({
             method: "post",
@@ -20,16 +19,14 @@ const SignInForm = () => {
             }
         })
         .then((res) => {
-            console.log(res);
-            if(res.data.errors) {
-                emailError.innerHTML = res.data.status;
-                passwordError.innerHTML = res.data.status;
-            } else {
-                window.location = '/home';
+            if(res){
+                window.location ="/home";
             }
         })
         .catch((error) => {
-            console.log(error);
+            if(error) {
+                msgError.innerHTML = 'Votre adresse mail ou votre mot de passe est incorrect';
+            }
         });
     };
 
@@ -38,13 +35,13 @@ const SignInForm = () => {
             <label htmlFor="email">Email</label>
             <br/>
             <input type="text" name="email" id="email" onChange={(e)=> setEmail(e.target.value)} value={email}/>
-            <div className="email error"></div>
-            <br/>
+            <br/><br/>
             <label htmlFor="password">Mot de passe</label>
             <br/>
             <input type="password" name="password" id="password" onChange={(e)=> setPassword(e.target.value)} value={password}/>
-            <div className="password error"></div>
             <br/>
+            <br/>
+            <div className="error"></div>
             <input type="submit" value="Se connecter"/>
             <br/>
         </form>

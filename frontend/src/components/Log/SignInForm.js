@@ -5,6 +5,14 @@ const SignInForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
+    const parseJwt = (token) => {
+    try {
+        return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+        return null;
+    }
+    };
+
     const handleLogin = (e) => {
         e.preventDefault();
         const msgError = document.querySelector('.error');
@@ -19,7 +27,13 @@ const SignInForm = () => {
             }
         })
         .then((res) => {
-            if(res){
+            if(!res){
+                window.location ="/";
+            } else {
+                console.log(res.data)
+                localStorage.setItem('token', res.data.token)
+                const decodedJwt = parseJwt(res.data.token);
+                console.log(decodedJwt)
                 window.location ="/home";
             }
         })
